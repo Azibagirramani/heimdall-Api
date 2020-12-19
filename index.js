@@ -1,7 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const port = 5000 
+const port = process.env.PORT || 5000  
 const main_routes = require('./directory/route.controller')
+const e = require('express')
 
 /// middleswares 
 app = express()
