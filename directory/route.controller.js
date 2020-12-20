@@ -14,9 +14,9 @@ function validate_data(req, res){
     if(!crux) errors.push('Crux is Required')
     if(!color) errors.push('Color is Required')
     if(!title) errors.push('Title is Required')
-    if(errors.length != 0) return res.status(400).json({ errors: errors, "required keys": keys })
+    if(errors.length != 0) return res.status(400).json({  status: '400', errors: errors, "required keys": keys })
     
-    return res.json({ data: req.body, "required keys": keys })
+    return res.json({ status:'200', data: req.body, "required keys": keys })
 }
 
 /*
@@ -30,11 +30,11 @@ function remove_data(req, res){
     for (let key = 0; key < objectKey.length; key++){
         if(objectKey[key] == item) {
             delete data[item] 
-            return res.json({ data: data, 'key removed':item })
+            return res.json({ status: '200', data: data, 'key removed':item })
         }
     }
 
-    return res.status(400).json({ msg: 'attribute not found', 'key to remove':item})
+    return res.status(400).json({ status: '400', msg: 'attribute not found', 'key to remove':item})
 
 }
 
