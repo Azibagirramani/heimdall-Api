@@ -16,7 +16,7 @@ function validate_data(req, res){
     if(!title) errors.push('Title is Required')
     if(errors.length != 0) return res.status(400).json({ errors: errors, "required keys": keys })
     
-    return res.json({ msg: 'valid', "required keys": keys })
+    return res.json({ data: req.body, "required keys": keys })
 }
 
 /*
