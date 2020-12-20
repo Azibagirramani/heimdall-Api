@@ -23,14 +23,14 @@ function validate_data(req, res){
 search and remove
 */
 function remove_data(req, res){
-    let { body } = req
+    let data = { type: 'durban', crux: 'Indices', color: 'green', title: 'Indict the idiot' };
     let { item } = req.params
-    const objectKey = Object.keys(body)
+    const objectKey = Object.keys(data)
     
     for (let key = 0; key < objectKey.length; key++){
         if(objectKey[key] == item) {
-            delete body[item] 
-            return res.json({ data: body, 'key removed':item })
+            delete data[item] 
+            return res.json({ data: data, 'key removed':item })
         }
     }
 
