@@ -7,10 +7,9 @@ router.delete('/remove-item/:item', remove_data)
 Validate data
 */
 function validate_data(req, res){
-    let data = { type: 'durban', crux: 'Indices', color: 'green', title: 'Indict the idiot' };
     let errors = [] 
     let keys = [ 'type', 'crux', 'color', 'title' ]
-    let { type, crux, color, title } = data 
+    let { type, crux, color, title } = req.body 
     if(!type) errors.push('Type is Required')
     if(!crux) errors.push('Crux is Required')
     if(!color) errors.push('Color is Required')
@@ -24,14 +23,14 @@ function validate_data(req, res){
 search and remove
 */
 function remove_data(req, res){
-    let data = { type: 'durban', crux: 'Indices', color: 'green', title: 'Indict the idiot' };
+    let { body } = req
     let { item } = req.params
-    const objectKey = Object.keys(data)
+    const objectKey = Object.keys(body)
     
     for (let key = 0; key < objectKey.length; key++){
         if(objectKey[key] == item) {
-            delete data[item] 
-            return res.json({ data: data, 'key removed':item })
+            delete body[item] 
+            return res.json({ data: body, 'key removed':item })
         }
     }
 
